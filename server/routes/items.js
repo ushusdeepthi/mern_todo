@@ -1,6 +1,10 @@
 import express from 'express'
-import { createTodoItem,} from '../controllers/items.js'
+import { getTodoList,createTodoItem,deleteTodoItem } from '../controllers/items.js'
 
 const router = express.Router();
 
-router.post('/', createTodoItem);
+router.get('/', getTodoList);
+router.post('/',  createTodoItem);
+router.delete('/:id', deleteTodoItem);
+
+export default router;
