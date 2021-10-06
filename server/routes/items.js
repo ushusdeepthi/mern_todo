@@ -1,6 +1,6 @@
 import express from 'express'
+import { createTodoItem,} from '../controllers/items.js'
+
 const router = express.Router();
 
-router.get('/',(req,res)=>{
-    res.send('Hello')
-})
+router.post('/', createTodoItem);
