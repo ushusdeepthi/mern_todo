@@ -88,3 +88,33 @@ export const loginUser = (req,res)=>{
         })
 }
 
+//middleware used in every authentication request
+export const auth = (req,res,next)=> {
+    //token using bearer authentication 
+    const authHeader = req.headers['authorization']
+    const token = authHeader && authHeader.split(' ')[1]
+    //check token
+    if(!token) return res.status(401).json({message:' Authorization denied'})
+
+    //verify token
+    jwt.verify(token,process.env.ACCESS_TOKEN_SECRET,(err,user)=>{
+        if(err) return res.status(403).json({'message':'Access denied'})
+        req.user=user
+        next()
+    });
+}
+
+// OR can be done like this
+// export const auth = (req,res,next)=> {
+//     //token send from frontend wiyh key x-auth-token
+//     const token= req.header('x-auth-token')
+//     //check token
+//     if(!token) return res.status(401).json({message:' Authorization denied'})
+
+//     //verify token
+//     jwt.verify(token,process.env.ACCESS_TOKEN_SECRET,(err,user)=>{
+//         if(err) return res.status(403).json({'message':'Access denied'})
+//         req.user = user
+//         next()
+//     });
+// }
