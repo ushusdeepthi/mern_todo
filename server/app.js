@@ -3,9 +3,9 @@ import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import itemsRouter from './routes/items.js'
+import indexRouter from './routes/index.js'
 
 const app=express();
-
 
 dotenv.config() // configuring the dotenv file
 
@@ -15,6 +15,7 @@ app.use(cors());
 app.use(express.json());
 
 //routes
+app.use('/api', indexRouter);
 app.use('/api/items', itemsRouter);
 
 //db connection
