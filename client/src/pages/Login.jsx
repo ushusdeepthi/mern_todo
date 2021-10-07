@@ -8,7 +8,9 @@ export default function Login() {
     const apiUrl = "http://localhost:5000/api/login";
     const [email,setEmail] =useState('')
     const [password,setPassword] =useState('')
-    const handleSubmit = async()=>{
+    
+    const handleSubmit = async(e)=>{
+        e.preventDefault()
         try{
              if(email && password){
                 const credentials ={
@@ -18,7 +20,7 @@ export default function Login() {
                 const user = await axios.post(apiUrl,credentials)
                 if(user){
                     localStorage.setItem("user", JSON.stringify(user.data))
-                    history.push('/todolist')
+                    history.push('/todo')
                 }
                 else{
                     console.log('no user')
