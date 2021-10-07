@@ -51,3 +51,40 @@ export const registerUser = (req,res)=>{
             })
         });
 }
+
+export const loginUser = (req,res)=>{
+    const {email,password} = req.body;
+    //simple validation
+    if(!email || !password){
+        return res.status(400).json({message:'Please enter all the fields'});
+    }
+
+    //check for existing user
+    User.findOne({email:email})
+        .then(user =>{
+            if(!user) return res.status(400).json({message:'User does not exist'})
+
+            //validate password
+            bcrypt.compare(password,user.password)
+                .then(isMatch=>{
+                    if(!isMatch) return res.status(400).json({'message':'Invalid credentials'})
+                    jwt.sign(
+                                {id:user._id},
+                                process.env.ACCESS_TOKEN_SECRET,
+                                { expiresIn:3600},
+                                (err,token)=>{
+                                    if(err) throw err;                                    
+                                    res.status(200).json({
+                                        token,
+                                        user:{
+                                            id: user._id,
+                                            name:user.name,
+                                           email:user.email
+                                        }
+                                    })
+                                }
+                            )
+                })
+        })
+}
+
