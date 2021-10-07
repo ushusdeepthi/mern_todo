@@ -88,6 +88,16 @@ export const loginUser = (req,res)=>{
         })
 }
 
+
+export const getSingleUser = (req,res)=> {
+    User.findById(req.user.id)
+    .select('-password')
+        .then(user=>{
+            if(!user) return res.status(400).json({'message': 'User does not exist'})
+            res.status(200).json(user)
+        })
+}
+
 //middleware used in every authentication request
 export const auth = (req,res,next)=> {
     //token using bearer authentication 
