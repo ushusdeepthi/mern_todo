@@ -1,14 +1,30 @@
 import React, {useState} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import { TextField, Button} from '@material-ui/core'
+import axios from "axios"
 
 export default function Register() {
+    const history = useHistory()
+    const apiUrl = "http://localhost:5000/api/register";
     const [name,setName] =useState('')
     const [email,setEmail] =useState('')
     const [password,setPassword] =useState('')
 
-    const handleSubmit = ()=>{
-        console.log(name,email,password)
+   const handleSubmit = async(e)=>{
+       e.preventDefault()
+        try{
+             if(name && email && password){
+                const credentials ={
+                    name,
+                    email,
+                    password
+                }
+                await axios.post(apiUrl,credentials)
+                history.push('/login')
+            }
+        }catch(err){
+
+        }
     }
     return (
         <form  onSubmit={handleSubmit}>

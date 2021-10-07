@@ -57,7 +57,7 @@ export default function Login() {
                     Log in
                     </Button>
                     <p>Do not have an coount! 
-                        <Link to="/login"> Register </Link>
+                        <Link to="/register"> Register </Link>
                     </p>
                 </div>
             </form>
