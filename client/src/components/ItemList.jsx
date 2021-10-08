@@ -19,6 +19,16 @@ export default function ItemList() {
             console.log(err)
         }        
     }
+    const deleteItem = async(id)=>{
+        try{
+            await axios.delete(`${apiUrl}/${id}`, {headers:authHeader()})
+            const newTodos = todos.filter((item) => item._id !== id)
+            setTodos(newTodos);
+        }catch(err){
+            console.log(err)
+        }
+    }
+
     return (
         <>
         {!todos && <h1>Loading.....</h1> }
@@ -28,6 +38,7 @@ export default function ItemList() {
                     <div key={index}>
                         <h4>{item.title}</h4>
                         <p>{item.body}</p>
+                        <button onClick={()=>deleteItem(item._id)}>Delete</button>
                     </div>
                 )
             })
