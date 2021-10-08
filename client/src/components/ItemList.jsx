@@ -15,14 +15,23 @@ export default function ItemList() {
         try{
             const list = await axios.get(apiUrl,{headers:authHeader()})
             setTodos(list.data)
-            console.log(list.data)
         }catch(err){
             console.log(err)
         }        
     }
     return (
-        <div>
-            <h1>The list goes here</h1>
-        </div>
+        <>
+        {!todos && <h1>Loading.....</h1> }
+        {todos && 
+            todos.map((item,index)=>{
+                return(
+                    <div key={index}>
+                        <h4>{item.title}</h4>
+                        <p>{item.body}</p>
+                    </div>
+                )
+            })
+        }
+        </>
     )
 }
