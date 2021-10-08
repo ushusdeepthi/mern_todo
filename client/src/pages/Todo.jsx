@@ -1,6 +1,8 @@
 import React from 'react'
 import { Container, AppBar, Typography,Grow, Grid} from '@material-ui/core'
 import ItemList from '../components/ItemList'
+import ItemForm from '../components/ItemForm'
+
 
 export default function App() {
   return (
@@ -15,7 +17,7 @@ export default function App() {
                     <ItemList />
                   </Grid>
                   <Grid item xs={4}>
-                    <h1>Here  goes the item List</h1>
+                    <ItemForm />
                   </Grid>
                 </Grid>
               </Container>
