@@ -2,7 +2,7 @@ import Todo from '../models/todoList.js'
 
 export const getTodoList = async (req,res)=>{
     try{
-        const todoList = await Todo.find();
+        const todoList = await Todo.find({user: req.user.id});
         console.log(todoList);
         console.log(`user: ${req.user.id}`);
         res.status(200).json(todoList);
@@ -25,7 +25,7 @@ export const createTodoItem = async (req,res)=>{
 }
 export const deleteTodoItem = async (req,res)=>{
     try{
-        await Todo.findByIdAndRemove(req.params.id);
+        await Todo.findOneAndDelete({_id:req.params.id, user :req.user.id});
         res.json({ message: "Post deleted successfully." });
     }
     catch(error){
