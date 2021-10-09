@@ -3,15 +3,13 @@ import axios from "axios"
 import {TextField, Button} from '@material-ui/core';
 import { UserContext } from '../contexts/UserContext'
 
-
 export default function ItemForm() {
     const apiUrl = "http://localhost:5000/api/items";
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const {authHeader}=useContext(UserContext)
 
-    const handleSubmit= async(e)=>{
-        e.preventDefault();
+    const handleSubmit= async()=>{
         try{
             if(title && description){
                 const newItem ={
@@ -27,7 +25,6 @@ export default function ItemForm() {
             console.log(error.message)
         }
 
-        //Do an axios post request to the api
     }
     return (
         <>
