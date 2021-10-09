@@ -35,6 +35,21 @@ export const createTodoItem = async (req,res)=>{
         res.status(409).json({message:error.message});
     }
 }
+
+export const updateTodoItem = async (req,res)=>{
+    const {title, body } = req.body
+    const filter = {_id:req.params.id, user :req.user.id}
+    const update = {title, body}
+    try{
+        const updateItem = await Todo.findOneAndUpdate(filter, update,{ new: true });
+        if(!updateItem) return res.status(404).json({message: error.message})
+        res.status(201).json({ updateItem });
+    }
+    catch(error){
+        res.json({message:error.message});
+    }
+}
+
 export const deleteTodoItem = async (req,res)=>{
     try{
         await Todo.findOneAndDelete({_id:req.params.id, user :req.user.id});
