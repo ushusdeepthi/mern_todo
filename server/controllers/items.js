@@ -11,6 +11,18 @@ export const getTodoList = async (req,res)=>{
         res.status(404).json({message: error.message})
     }
 }
+
+export const getTodoItem = async (req,res)=>{
+    try{
+        const todoItem = await Todo.findOne({_id:req.params.id, user :req.user.id});
+        if(!todoItem) return res.status(404).json({message: error.message})
+        res.status(200).json(todoItem);
+    }
+    catch(error){
+        res.status(404).json({message: error.message})
+    }
+}
+
 export const createTodoItem = async (req,res)=>{
     const {title,body} = req.body
     const newItem = new Todo({title, body, user : req.user.id} );
