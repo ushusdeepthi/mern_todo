@@ -1,8 +1,10 @@
-import React, {createContext} from 'react'
+import React, {useState, createContext} from 'react'
 
 export const UserContext = createContext()
 
 export function UserProvider({children}){
+    const [modal, setModal ] = useState(false)
+    const [item, setItem] = useState(null)
     const authHeader = ()=>{
         const user = JSON.parse(localStorage.getItem('user'));
         if (user && user.token) {
@@ -11,7 +13,7 @@ export function UserProvider({children}){
             return {};
         }
     }
-    const userContextValue={authHeader}
+    const userContextValue={authHeader, modal, setModal, item, setItem}
 return (
       <UserContext.Provider value={userContextValue}>
           {children}
