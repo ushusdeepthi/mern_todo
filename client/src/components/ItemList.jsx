@@ -1,14 +1,15 @@
 import React,{ useState, useEffect,useContext } from 'react'
 import axios from "axios"
 import { UserContext } from '../contexts/UserContext'
+import ItemEditModal from './ItemEditModal';
 
 export default function ItemList() {
     const apiUrl = "http://localhost:5000/api/items";
     const [todos, setTodos] = useState([]);
-    const {authHeader}=useContext(UserContext)
+    const {authHeader,modal, setModal, item, setItem} = useContext(UserContext)
 
     useEffect(()=>{
-        getTodoList();
+        getTodoList(); 
     },[])
 
     const getTodoList =  async()=>{
@@ -29,8 +30,20 @@ export default function ItemList() {
         }
     }
 
+        const editItem = async(id)=>{
+        try{
+            const todoItem = await axios.get(`${apiUrl}/${id}`, {headers:authHeader()})
+            setItem(todoItem.data)
+            console.log(item)
+            setModal(true)
+        }catch(err){
+            console.log(err)
+        }
+    }
+
     return (
         <>
+        
         {!todos && <h1>Loading.....</h1> }
         {todos && 
             todos.map((item,index)=>{
@@ -39,10 +52,13 @@ export default function ItemList() {
                         <h4>{item.title}</h4>
                         <p>{item.body}</p>
                         <button onClick={()=>deleteItem(item._id)}>Delete</button>
+                        <button onClick={()=>editItem(item._id)}>Edit</button>
                     </div>
                 )
             })
+            
         }
+        {modal && <ItemEditModal /> }
         </>
     )
 }
