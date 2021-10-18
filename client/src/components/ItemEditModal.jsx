@@ -6,13 +6,14 @@ import {TextField, Button} from '@material-ui/core';
     
     export default function ItemEditModal() {
         const apiUrl = "http://localhost:5000/api/items";
-        const {authHeader, setModal, item,setItem} = useContext(UserContext)
+        const {authHeader, setModal, item,setItem,todos,setTodos} = useContext(UserContext)
 
         const handleSubmit= async(e)=>{
-
+            e.preventDefault()
         try{
             await axios.patch(`${apiUrl}/${item._id}`,item,{headers:authHeader()},)
             setModal(false)
+            setTodos(todos.map((todo)=>(todo._id === item._id ? item : todo )))
         }catch(error){
             console.log(error.message)
         }
