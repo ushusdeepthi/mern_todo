@@ -4,10 +4,9 @@ import { UserContext } from '../contexts/UserContext'
 import ItemEditModal from './ItemEditModal';
 
 export default function ItemList() {
-    const apiUrl = "http://localhost:5000/api/items";
-    const [todos, setTodos] = useState([]);
+    const apiUrl = "http://localhost:5000/api/items";  
     const [user,setUser] = useState(null)
-    const {authHeader,modal, setModal, item, setItem} = useContext(UserContext)
+    const {authHeader,modal, setModal, item, setItem,todos,setTodos} = useContext(UserContext)
 
     useEffect(()=>{
         getTodoList(); 
