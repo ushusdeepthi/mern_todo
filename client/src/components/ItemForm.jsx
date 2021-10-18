@@ -16,7 +16,7 @@ export default function ItemForm() {
                     "title": title,
                     "body":description
                 }
-            return await axios.post(apiUrl, {headers:authHeader()},newItem)
+            return await axios.post(apiUrl, newItem, {headers:authHeader()})
             }
             else{
                 console.log('Title and description mandatory')
