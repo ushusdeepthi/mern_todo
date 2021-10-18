@@ -7,16 +7,18 @@ export default function ItemForm() {
     const apiUrl = "http://localhost:5000/api/items";
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
-    const {authHeader}=useContext(UserContext)
+    const {authHeader,todos,setTodos}=useContext(UserContext)
 
-    const handleSubmit= async()=>{
+    const handleSubmit= async(e)=>{
+        e.preventDefault()
         try{
             if(title && description){
                 const newItem ={
                     "title": title,
                     "body":description
                 }
-            return await axios.post(apiUrl, newItem, {headers:authHeader()})
+            const new_Note = await axios.post(apiUrl,newItem,{headers:authHeader()})
+            await setTodos([...todos,new_Note.data])
             }
             else{
                 console.log('Title and description mandatory')
@@ -55,7 +57,7 @@ export default function ItemForm() {
                 >
                     Add note
                 </Button>
-            </form>
+            </form>           
         </>
     )
 }
