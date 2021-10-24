@@ -1,12 +1,11 @@
-import React,{ useState, useEffect,useContext } from 'react'
+import React,{ useEffect,useContext } from 'react'
 import axios from "axios"
 import { UserContext } from '../contexts/UserContext'
 import ItemEditModal from './ItemEditModal';
 
 export default function ItemList() {
     const apiUrl = "http://localhost:5000/api/items";  
-    const [user,setUser] = useState(null)
-    const {authHeader,modal, setModal, item, setItem,todos,setTodos} = useContext(UserContext)
+    const {authHeader,modal, setModal, item, setItem,todos,setTodos,user,setUser} = useContext(UserContext)
 
     useEffect(()=>{
         getTodoList(); 
@@ -68,8 +67,6 @@ export default function ItemList() {
             
         }
         {modal && <ItemEditModal /> }
-
-        {user && <h1>{user.name}</h1>}
         </>
     )
 }
