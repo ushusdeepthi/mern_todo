@@ -50,6 +50,15 @@ const useStyles = makeStyles((theme)=>({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+ 
+card:{
+  height:'100%',
+  display:'flex',
+  flexDirection:'column'
+},
+cardContent:{
+  flexGrow:'1'
+},
 })) 
 
 export default useStyles;

@@ -1,9 +1,13 @@
 import React,{ useEffect,useContext } from 'react'
 import axios from "axios"
 import { UserContext } from '../contexts/UserContext'
+import {Avatar,Button, Card, CardContent,CardActions,Container, Grid, Typography} from '@material-ui/core';
+import ListAltIcon from '@material-ui/icons/ListAlt';
+import useStyles from '../styles/styles'
 import ItemEditModal from './ItemEditModal';
 
 export default function ItemList() {
+    const classes = useStyles()
     const apiUrl = "http://localhost:5000/api/items";  
     const {authHeader,modal, setModal, item, setItem,todos,setTodos,user,setUser} = useContext(UserContext)
 
@@ -49,23 +53,59 @@ export default function ItemList() {
         }
     }
 
-    return (
+return (
         <>
         
         {!todos && <h1>Loading.....</h1> }
-        {todos && 
-            todos.map((item,index)=>{
-                return(
-                    <div key={index}>
-                        <h4>{item.title}</h4>
-                        <p>{item.body}</p>
-                        <button onClick={()=>deleteItem(item._id)}>Delete</button>
-                        <button onClick={()=>editItem(item._id)}>Edit</button>
-                    </div>
-                )
-            })
-            
-        }
+        <Container className={classes.form} maxWidth ="md" component="main">
+            <div className={classes.paper}>
+                <Avatar className={classes.avatar}>
+                    <ListAltIcon />
+                    </Avatar>
+                <Typography component="h1" variant="h5">
+                    Notes
+                </Typography>
+                <Grid container spacing={2} >
+                    {todos && 
+                        todos.map((item,index)=>{
+                            return(
+                        
+                            <Grid item key={index} sm={6} xs={12}>
+                                <Card className={classes.card}>
+                                    <CardContent className={classes.cardContent}>
+                                        <Typography gutterBottom variant="h5">
+                                        {item.title}
+                                        </Typography>
+                                        <Typography gutterBottom >
+                                        {item.body}
+                                        </Typography>
+                                    </CardContent>
+                                    <CardActions>
+                                        <Button 
+                                            onClick={()=>deleteItem(item._id)}
+                                            size="small" 
+                                            color="secondary"
+                                        >
+                                            Delete
+                                        </Button>
+                                        <Button 
+                                            onClick={()=>editItem(item._id)}
+                                            size="small" 
+                                            color="primary"
+                                        >
+                                            Edit
+                                        </Button>
+                                    </CardActions>
+                                </Card>
+                            </Grid>
+                        )
+                    })
+                
+                    }
+                </Grid>
+            </div>
+        </Container>
+
         {modal && <ItemEditModal /> }
         </>
     )
