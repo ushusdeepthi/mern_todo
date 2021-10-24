@@ -55,7 +55,7 @@ export default function Login() {
         </Typography>
                 <form  onSubmit={handleSubmit}>
                     <TextField
-                        label="E-mail"
+                        label="Email"
                         variant="outlined"
                         margin="normal"
                         type="email"
@@ -76,10 +76,10 @@ export default function Login() {
                     />
                     <div>
                         <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-                        Log in
+                        Sign in
                         </Button>
                         <p>Do not have an account! 
-                            <Link to="/register"> Register </Link>
+                            <Link to="/register"> Sign up </Link>
                         </p>
                     </div>
                 </form>
