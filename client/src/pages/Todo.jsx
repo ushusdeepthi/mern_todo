@@ -1,5 +1,5 @@
 import React,{useContext} from 'react'
-import { Container,AppBar,Typography,Toolbar,CssBaseline,Grow,Grid} from '@material-ui/core'
+import { AppBar, Container,CssBaseline,Grid,Grow, Toolbar, Typography} from '@material-ui/core'
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import useStyles from '../styles/styles'
@@ -32,10 +32,10 @@ export default function App() {
             <Grow in>
               <Container>
                 <Grid container spacing={2}>
-                  <Grid item xs={8}>
+                  <Grid item xs={12} md={8}>
                     <ItemList />
                   </Grid>
-                  <Grid item xs={4}>
+                  <Grid item xs={12}md={4}>
                     <ItemForm />
                   </Grid>
                 </Grid>
