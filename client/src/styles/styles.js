@@ -50,6 +50,10 @@ const useStyles = makeStyles((theme)=>({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  buttonSize:{
+    width:'30%',
+    margin:'1rem'
+  },
  
 card:{
   height:'100%',
@@ -59,6 +63,22 @@ card:{
 cardContent:{
   flexGrow:'1'
 },
+modal: {
+    position: 'absolute',
+    top:'50%',
+    left:'50%',
+    width: 400,
+    height:'75vh',
+    transform: 'translate(-50%, -50%)',
+    zIndex:1300,
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+  blur:{
+    backgroundColor:'gray',
+  }
 })) 
 
 export default useStyles;
