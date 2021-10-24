@@ -1,9 +1,13 @@
 import React, {useState} from 'react'
-import {Link, useHistory} from 'react-router-dom'
-import { Container,AppBar,Typography, TextField, Button} from '@material-ui/core'
+import { Link, useHistory} from 'react-router-dom'
+import {AppBar,Avatar, Button, Container, CssBaseline, TextField, Toolbar, Typography } from '@material-ui/core'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import EventNoteIcon from '@material-ui/icons/EventNote';
+import useStyles from '../styles/styles'
 import axios from "axios"
 
 export default function Login() {
+    const classes = useStyles()
     const history = useHistory()
     const apiUrl = "http://localhost:5000/api/login";
     const [email,setEmail] =useState('')
@@ -31,38 +35,56 @@ export default function Login() {
         }
         }
     return (
-        <Container maxWidth="md">
-            <AppBar position="static">
-                <Typography variant="h2" align="center">TODO APP</Typography>
+        <>
+            <CssBaseline />
+            <AppBar position="relative">
+                <Toolbar>
+                    <EventNoteIcon className= {classes.icon} fontSize="large"/>
+                    <Typography variant="h6">Plan IT</Typography>
+                </Toolbar>
             </AppBar>
-            <form  onSubmit={handleSubmit}>
-                <TextField
-                    label="Email"
-                    variant="filled"
-                    type="email"
-                    required
-                    fullWidth
-                    value={email}
-                    onChange={e => setEmail(e.target.value)}
-                />
-                <TextField
-                    label="Password"
-                    variant="filled"
-                    type="password"
-                    required
-                    fullWidth
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
-                />
-                <div>
-                    <Button type="submit" variant="contained" color="primary">
-                    Log in
-                    </Button>
-                    <p>Do not have an coount! 
-                        <Link to="/register"> Register </Link>
-                    </p>
-                </div>
-            </form>
-        </Container>
+            
+            <Container className={classes.form} maxWidth ="md" component="main">
+                <div className={classes.paper}>
+
+            <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
+                <form  onSubmit={handleSubmit}>
+                    <TextField
+                        label="Email"
+                        variant="outlined"
+                        margin="normal"
+                        type="email"
+                        required
+                        fullWidth
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
+                    />
+                    <TextField
+                        variant="outlined"
+                        margin="normal"
+                        label="Password" 
+                        type="password"
+                        required
+                        fullWidth
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
+                    />
+                    <div>
+                        <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+                        Sign in
+                        </Button>
+                        <p>Do not have an account! 
+                            <Link to="/register"> Sign up </Link>
+                        </p>
+                    </div>
+                </form>
+                 </div>
+            </Container>
+            </>
     )
 }

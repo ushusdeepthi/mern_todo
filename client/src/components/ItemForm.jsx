@@ -1,9 +1,12 @@
 import React, { useState, useContext } from 'react'
 import axios from "axios"
-import {TextField, Button} from '@material-ui/core';
+import {Avatar, Button, Container, CssBaseline, TextField, Typography } from '@material-ui/core'
+import CreateIcon from '@material-ui/icons/Create';
+import useStyles from '../styles/styles'
 import { UserContext } from '../contexts/UserContext'
 
 export default function ItemForm() {
+    const classes = useStyles()
     const apiUrl = "http://localhost:5000/api/items";
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
@@ -30,11 +33,21 @@ export default function ItemForm() {
     }
     return (
         <>
-            <h1>Add a new Note</h1>
+            <CssBaseline />
+            <Container className={classes.form} maxWidth ="lg" component="section">
+                <div className={classes.paper}>
+
+            <Avatar className={classes.avatar}>
+          <CreateIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Add a new Note
+        </Typography>
             <form autoComplete="off" onSubmit={handleSubmit}>
                 <TextField
                     onChange = {(e)=>setTitle(e.target.value)}
                     label="Title"
+                    margin="normal"
                     variant="outlined"
                     color="primary"
                     fullWidth
@@ -44,6 +57,7 @@ export default function ItemForm() {
                     onChange = {(e)=>setDescription(e.target.value)}
                     label="Description"
                     variant="outlined"
+                    margin="normal"
                     color="primary"
                     multiline
                     rows={4}
@@ -54,10 +68,14 @@ export default function ItemForm() {
                     type="submit"
                     color="primary"
                     variant="contained"
+                    fullWidth
+                    className={classes.submit}
                 >
                     Add note
                 </Button>
             </form>           
-        </>
+        </div>
+            </Container>
+            </>
     )
 }
