@@ -1,22 +1,33 @@
 import React from 'react'
 import { Link} from 'react-router-dom'
-import { Container, AppBar, Typography , Card, Button } from '@material-ui/core'
+import { Container, CssBaseline, AppBar, Typography , Card, Button,Grid, Toolbar,Paper } from '@material-ui/core'
+import useStyles from '../styles/styles'
+import EventNoteIcon from '@material-ui/icons/EventNote';
 
 export default function Homepage() {
+    const classes = useStyles()
     return (
-        <Container maxWidth="md">
-            <AppBar position="static">
-                <Typography variant="h2" align="center">TODO APP</Typography>
-            </AppBar>
-            <Card variant="outlined">
-                <Button>
-                <Link to="/login">Login </Link>
-                </Button>
-                <Button>
-                <Link to="/register">Register </Link>
-                </Button>
-            </Card>
-            
-        </Container>
+        <>
+            <CssBaseline />
+            <AppBar position="relative">
+                <Toolbar>
+                    <EventNoteIcon className= {classes.icon} fontSize="large"/>
+                    <Typography variant="h6">Plan IT</Typography>
+                    <div className={classes.button}>
+                        <Button variant ="contained" color="primary" size="large" href="/login">
+                            Sign in
+                        </Button>
+                        <Button variant ="outlined" size="large" href="/Register" className={classes.buttonSignup}>
+                            Sign up
+                        </Button>
+                    </div>
+                </Toolbar>
+                </AppBar>
+            <Container className={classes.container}>           
+                <Typography className={classes.heroText} variant="h3">
+                    Plan IT, Makes life easier!!
+                </Typography>
+            </Container>
+        </>
     )
 }
