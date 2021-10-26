@@ -22,6 +22,10 @@ const TodoSchema = mongoose.Schema({
         type:Date,
         default:new Date
     },
+    updatedAt:{
+        type:Date,
+        default:new Date
+    },
 });
 
 const Todo = mongoose.model('Todo', TodoSchema)

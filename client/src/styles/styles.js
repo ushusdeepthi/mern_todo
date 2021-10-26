@@ -68,7 +68,7 @@ modal: {
     top:'50%',
     left:'50%',
     width: 400,
-    height:'75vh',
+    height:'auto',
     transform: 'translate(-50%, -50%)',
     zIndex:1300,
     backgroundColor: theme.palette.background.paper,
@@ -78,6 +78,10 @@ modal: {
   },
   blur:{
     backgroundColor:'gray',
+  },
+  date:{
+    fontWeight:'500',
+    marginTop:'2rem'
   }
 })) 
 

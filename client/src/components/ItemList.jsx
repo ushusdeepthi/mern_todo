@@ -1,4 +1,5 @@
 import React,{ useEffect,useContext } from 'react'
+import ReactMarkdown from 'react-markdown'
 import axios from "axios"
 import { UserContext } from '../contexts/UserContext'
 import {Avatar,Button, Card, CardContent,CardActions,Container, Grid, Typography} from '@material-ui/core';
@@ -78,7 +79,10 @@ return (
                                         </Typography>
                                         <Typography gutterBottom >
                                         {item.body}
-                                        </Typography>
+                                        </Typography>                        
+                                        <Typography gutterBottom  className={classes.date}>
+                                            Last Modified: {(item.updatedAt).toString().split('T')[0]}                                       
+                                        </Typography>   
                                     </CardContent>
                                     <CardActions>
                                         <Button 
