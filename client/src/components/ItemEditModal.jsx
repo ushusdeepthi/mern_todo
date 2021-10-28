@@ -1,13 +1,16 @@
-import React,{ useContext } from 'react'
+import React,{ useState, useContext } from 'react'
+import ReactMarkdown from 'react-markdown'
 import axios from "axios"
-import {Avatar, Button, Container, CssBaseline,Modal, TextField, Typography } from '@material-ui/core'
+import {Avatar, Button,Card, CardContent,CardActions, Container, CssBaseline,Modal, TextField, Typography } from '@material-ui/core'
 import CreateIcon from '@material-ui/icons/Create';
 import useStyles from '../styles/styles'
 import { UserContext } from '../contexts/UserContext'
 
     
     export default function ItemEditModal() {
-            const classes = useStyles()
+        const classes = useStyles()
+        const [edit, setEdit] = useState(false)
+        
         const apiUrl = "http://localhost:5000/api/items";
         const {authHeader, setModal, item,setItem,todos,setTodos,modal} = useContext(UserContext)
 
@@ -25,9 +28,9 @@ const handleCancel= ()=>{
     console.log(item);
     setModal(false)
 }
-
     return (
-        <Modal open={modal}>           
+        <Modal open={modal}>
+            {edit ?          
             <Container className={`${classes.form} ${classes.modal}`} maxWidth ="lg" component="section">
                 <div className={classes.paper}>
 
@@ -83,6 +86,46 @@ const handleCancel= ()=>{
                     </form>
                 </div>
             </Container>
+        :
+        <Container className={`${classes.form} ${classes.modal}`} maxWidth ="lg" component="section">
+                <div className={classes.paper}>
+
+                    <Avatar className={classes.avatar}>
+                        <CreateIcon />
+                    </Avatar>
+                     <Typography component="h1" variant="h5">
+                       {item.title}
+                    </Typography>
+                        
+                         <Card className={classes.card} >
+                                    <CardContent className={classes.cardContent}>
+                                        <Typography gutterBottom >
+                                        {item.body}
+                                        </Typography>                        
+                                        <Typography gutterBottom  className={classes.date}>
+                                            Last Modified: {(item.updatedAt).toString().split('T')[0]}                                       
+                                        </Typography>   
+                                    </CardContent>
+                                    <CardActions>
+                                        <Button 
+                                            onClick={()=>setEdit(true)}
+                                            size="small" 
+                                            color="primary"
+                                        >
+                                            edit
+                                        </Button> 
+                                        <Button 
+                                            onClick={()=>setModal(false)}
+                                            size="small" 
+                                            color="primary"
+                                        >
+                                            Close
+                                        </Button>
+                                    </CardActions>
+                                </Card>
+                </div>
+            </Container>
+    }
         </Modal>
     )
 }

@@ -42,8 +42,7 @@ export default function ItemList() {
             console.log(err)
         }
     }
-
-        const editItem = async(id)=>{
+            const showList = async(id)=>{
         try{
             const todoItem = await axios.get(`${apiUrl}/${id}`, {headers:authHeader()})
             setItem(todoItem.data)
@@ -72,32 +71,30 @@ return (
                             return(
                         
                             <Grid item key={index} sm={6} xs={12}>
-                                <Card className={classes.card}>
+                                <Card className={classes.card} >
                                     <CardContent className={classes.cardContent}>
                                         <Typography gutterBottom variant="h5">
                                         {item.title}
                                         </Typography>
                                         <Typography gutterBottom >
-                                        {item.body}
+                                        {(item.body).slice(0,50)}
                                         </Typography>                        
-                                        <Typography gutterBottom  className={classes.date}>
-                                            Last Modified: {(item.updatedAt).toString().split('T')[0]}                                       
-                                        </Typography>   
+                                           
                                     </CardContent>
                                     <CardActions>
+                                        <Button 
+                                            onClick={()=>showList(item._id)}
+                                            size="small" 
+                                            color="primary"
+                                        >
+                                            Show
+                                        </Button> 
                                         <Button 
                                             onClick={()=>deleteItem(item._id)}
                                             size="small" 
                                             color="secondary"
                                         >
                                             Delete
-                                        </Button>
-                                        <Button 
-                                            onClick={()=>editItem(item._id)}
-                                            size="small" 
-                                            color="primary"
-                                        >
-                                            Edit
                                         </Button>
                                     </CardActions>
                                 </Card>

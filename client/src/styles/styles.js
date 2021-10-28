@@ -69,6 +69,8 @@ modal: {
     left:'50%',
     width: 400,
     height:'auto',
+    maxHeight:'85vh',
+    overflow: 'auto',
     transform: 'translate(-50%, -50%)',
     zIndex:1300,
     backgroundColor: theme.palette.background.paper,
