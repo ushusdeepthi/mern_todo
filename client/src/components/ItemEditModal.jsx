@@ -17,6 +17,7 @@ import { UserContext } from '../contexts/UserContext'
         const handleSubmit= async(e)=>{
             e.preventDefault()
         try{
+            item.updatedAt = Date.now()
             await axios.patch(`${apiUrl}/${item._id}`,item,{headers:authHeader()},)
             setModal(false)
             setTodos(todos.map((todo)=>(todo._id === item._id ? item : todo )))
@@ -104,7 +105,7 @@ const handleCancel= ()=>{
                                         </Typography>                        
                                         <Typography gutterBottom  className={classes.date}>
                                             Last Modified: {(item.updatedAt).toString().split('T')[0]}                                       
-                                        </Typography>   
+                                        </Typography>     
                                     </CardContent>
                                     <CardActions>
                                         <Button 

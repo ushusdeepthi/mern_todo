@@ -37,9 +37,9 @@ export const createTodoItem = async (req,res)=>{
 }
 
 export const updateTodoItem = async (req,res)=>{
-    const {title, body } = req.body
+    const {title, body,updatedAt } = req.body
     const filter = {_id:req.params.id, user :req.user.id}
-    const update = {title, body}
+    const update = {title, body,updatedAt}
     try{
         const updateItem = await Todo.findOneAndUpdate(filter, update,{ new: true });
         if(!updateItem) return res.status(404).json({message: error.message})
