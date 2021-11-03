@@ -22,7 +22,7 @@ app.use('/api/users', usersRouter)
 
 //db connection
 const port = process.env.PORT || 8000;
-mongoose.connect('mongodb://localhost:27017/mern-todo',{
+mongoose.connect(process.env.CONNECTION_URL,{
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
