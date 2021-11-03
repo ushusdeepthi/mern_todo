@@ -4,7 +4,6 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import itemsRouter from './routes/items.js'
 import indexRouter from './routes/index.js'
-import usersRouter from './routes/users.js'
 
 const app=express();
 
@@ -18,7 +17,6 @@ app.use(express.json())
 //routes
 app.use('/api', indexRouter)
 app.use('/api/items', itemsRouter)
-app.use('/api/users', usersRouter)
 
 //db connection
 const port = process.env.PORT || 8000;
