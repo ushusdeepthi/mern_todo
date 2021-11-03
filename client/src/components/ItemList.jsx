@@ -1,5 +1,4 @@
 import React,{ useEffect,useContext } from 'react'
-import ReactMarkdown from 'react-markdown'
 import axios from "axios"
 import { UserContext } from '../contexts/UserContext'
 import {Avatar,Button, Card, CardContent,CardActions,Container, Grid, Typography} from '@material-ui/core';
@@ -53,61 +52,59 @@ export default function ItemList() {
         }
     }
 
-return (
-        <>
-        
-        {!todos && <h1>Loading.....</h1> }
-        <Container className={classes.form} maxWidth ="md" component="main">
-            <div className={classes.paper}>
-                <Avatar className={classes.avatar}>
-                    <ListAltIcon />
-                    </Avatar>
-                <Typography component="h1" variant="h5">
-                    Notes
-                </Typography>
-                <Grid container spacing={2} >
-                    {todos && 
-                        todos.map((item,index)=>{
-                            return(
-                        
-                            <Grid item key={index} sm={6} xs={12}>
-                                <Card className={classes.card} >
-                                    <CardContent className={classes.cardContent}>
-                                        <Typography gutterBottom variant="h5">
-                                        {item.title}
-                                        </Typography>
-                                        <Typography gutterBottom >
-                                        {(item.body).slice(0,50)}
-                                        </Typography>                        
-                                           
-                                    </CardContent>
-                                    <CardActions>
-                                        <Button 
-                                            onClick={()=>showList(item._id)}
-                                            size="small" 
-                                            color="primary"
-                                        >
-                                            Show
-                                        </Button> 
-                                        <Button 
-                                            onClick={()=>deleteItem(item._id)}
-                                            size="small" 
-                                            color="secondary"
-                                        >
-                                            Delete
-                                        </Button>
-                                    </CardActions>
-                                </Card>
-                            </Grid>
-                        )
-                    })
-                
-                    }
-                </Grid>
-            </div>
-        </Container>
+    return (
+            <>
+            
+            {!todos && <h1>Loading.....</h1> }
+            <Container className={classes.form} maxWidth ="md" component="main">
+                <div className={classes.paper}>
+                    <Avatar className={classes.avatar}>
+                        <ListAltIcon />
+                        </Avatar>
+                    <Typography component="h1" variant="h5">
+                        Notes
+                    </Typography>
+                    <Grid container spacing={2} >
+                        {todos && 
+                            todos.map((item,index)=>{
+                                return(
+                                    <Grid item key={index} sm={6} xs={12}>
+                                        <Card className={classes.card} >
+                                            <CardContent className={classes.cardContent}>
+                                                <Typography gutterBottom variant="h5">
+                                                {item.title}
+                                                </Typography>
+                                                <Typography gutterBottom >
+                                                {(item.body).slice(0,50)}
+                                                </Typography>                        
+                                                
+                                            </CardContent>
+                                            <CardActions>
+                                                <Button 
+                                                    onClick={()=>showList(item._id)}
+                                                    size="small" 
+                                                    color="primary"
+                                                >
+                                                    Show
+                                                </Button> 
+                                                <Button 
+                                                    onClick={()=>deleteItem(item._id)}
+                                                    size="small" 
+                                                    color="secondary"
+                                                >
+                                                    Delete
+                                                </Button>
+                                            </CardActions>
+                                        </Card>
+                                    </Grid>
+                                )
+                            })
+                        }
+                    </Grid>
+                </div>
+            </Container>
 
-        {modal && <ItemEditModal /> }
+            {modal && <ItemEditModal /> }
         </>
     )
 }

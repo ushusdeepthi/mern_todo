@@ -46,45 +46,44 @@ export default function Login() {
             
             <Container className={classes.form} maxWidth ="md" component="main">
                 <div className={classes.paper}>
-
-            <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-                <form  onSubmit={handleSubmit}>
-                    <TextField
-                        label="Email"
-                        variant="outlined"
-                        margin="normal"
-                        type="email"
-                        required
-                        fullWidth
-                        value={email}
-                        onChange={e => setEmail(e.target.value)}
-                    />
-                    <TextField
-                        variant="outlined"
-                        margin="normal"
-                        label="Password" 
-                        type="password"
-                        required
-                        fullWidth
-                        value={password}
-                        onChange={e => setPassword(e.target.value)}
-                    />
-                    <div>
-                        <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-                        Sign in
-                        </Button>
-                        <p>Do not have an account! 
-                            <Link to="/register"> Sign up </Link>
-                        </p>
-                    </div>
-                </form>
+                    <Avatar className={classes.avatar}>
+                        <LockOutlinedIcon />
+                    </Avatar>
+                    <Typography component="h1" variant="h5">
+                    Sign in
+                    </Typography>
+                    <form  onSubmit={handleSubmit}>
+                        <TextField
+                            label="Email"
+                            variant="outlined"
+                            margin="normal"
+                            type="email"
+                            required
+                            fullWidth
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
+                        />
+                        <TextField
+                            variant="outlined"
+                            margin="normal"
+                            label="Password" 
+                            type="password"
+                            required
+                            fullWidth
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
+                        />
+                        <div>
+                            <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
+                            Sign in
+                            </Button>
+                            <p>Do not have an account! 
+                                <Link to="/register"> Sign up </Link>
+                            </p>
+                        </div>
+                    </form>
                  </div>
             </Container>
-            </>
+        </>
     )
 }
