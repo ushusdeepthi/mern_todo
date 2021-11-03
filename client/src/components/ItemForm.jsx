@@ -22,6 +22,8 @@ export default function ItemForm() {
                 }
             const new_Note = await axios.post(apiUrl,newItem,{headers:authHeader()})
             await setTodos([...todos,new_Note.data])
+            e.target.heading.value= ''
+            e.target.text.value= ''
             }
             else{
                 console.log('Title and description mandatory')
@@ -47,6 +49,7 @@ export default function ItemForm() {
                 <TextField
                     onChange = {(e)=>setTitle(e.target.value)}
                     label="Title"
+                    name="heading"
                     margin="normal"
                     variant="outlined"
                     color="primary"
@@ -57,6 +60,7 @@ export default function ItemForm() {
                     onChange = {(e)=>setDescription(e.target.value)}
                     label="Description"
                     variant="outlined"
+                    name="text"
                     margin="normal"
                     color="primary"
                     multiline
