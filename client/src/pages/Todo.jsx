@@ -1,4 +1,5 @@
 import React,{useContext} from 'react'
+import {useHistory} from 'react-router-dom'
 import { AppBar, Container,CssBaseline,Grid,Grow, Toolbar, Typography} from '@material-ui/core'
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
@@ -11,6 +12,11 @@ import { UserContext } from '../contexts/UserContext'
 export default function App() {
       const classes = useStyles()
       const {user}=useContext(UserContext)
+      const history = useHistory()
+      const logout= ()=>{
+        localStorage.removeItem("user");
+        history.push('/login')
+      }
   return (
     <>
     <CssBaseline />
@@ -22,7 +28,7 @@ export default function App() {
                     {user && 
                       <>
                         <Typography variant="h6">{user.name}</Typography>
-                        <ExitToAppIcon />
+                        <ExitToAppIcon onClick={logout}/>
                       </>  
                       }
 
