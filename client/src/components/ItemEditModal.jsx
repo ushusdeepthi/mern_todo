@@ -19,11 +19,9 @@ export default function ItemEditModal() {
             setModal(false)
             setTodos(todos.map((todo)=>(todo._id === item._id ? item : todo )))
         }catch(error){
-            console.log(error.message)
         }
     }
     const handleCancel= ()=>{
-        console.log(item);
         setModal(false)
     }
     return (

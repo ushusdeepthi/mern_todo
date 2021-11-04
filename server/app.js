@@ -7,18 +7,14 @@ import indexRouter from './routes/index.js'
 
 const app=express();
 
-dotenv.config() // configuring the dotenv file
-
-//middlewares
+dotenv.config()
 
 app.use(cors());
 app.use(express.json())
 
-//routes
 app.use('/api', indexRouter)
 app.use('/api/items', itemsRouter)
 
-//db connection
 const port = process.env.PORT || 8000;
 mongoose.connect(process.env.CONNECTION_URL,{
     useNewUrlParser: true,

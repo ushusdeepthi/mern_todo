@@ -27,8 +27,9 @@ export default function App() {
 
                     {user && 
                       <>
-                        <Typography variant="h6">{user.name}</Typography>
-                        <ExitToAppIcon onClick={logout}/>
+                        <Typography className={classes.utilityName} variant="h6">Hi {user.name}</Typography>
+                        <ExitToAppIcon className={classes.utilityLogout} onClick={logout}/>
+                        
                       </>  
                       }
 

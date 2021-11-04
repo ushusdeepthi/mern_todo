@@ -9,12 +9,11 @@ dotenv.config() ;
 
 export const registerUser = (req,res)=>{
     const {name,email,password} = req.body;
-    //simple validation
+
     if(!name || !email || !password){
         return res.status(400).json({message:'Please enter all the fields'});
     }
 
-    //check for existing user
     User.findOne({email:email})
         .then(user =>{
             if(user) return res.status(400).json({message:'User already exists'})
@@ -23,7 +22,7 @@ export const registerUser = (req,res)=>{
                 email,
                 password
             })
-            //create salt and hash
+
             bcrypt.genSalt((err,salt)=>{
                 bcrypt.hash(newUser.password,salt,(err,hash)=>{
                     if(err) throw err;
@@ -54,17 +53,16 @@ export const registerUser = (req,res)=>{
 
 export const loginUser = (req,res)=>{
     const {email,password} = req.body;
-    //simple validation
+
     if(!email || !password){
         return res.status(400).json({message:'Please enter all the fields'});
     }
 
-    //check for existing user
+
     User.findOne({email:email})
         .then(user =>{
             if(!user) return res.status(400).json({message:'User does not exist'})
 
-            //validate password
             bcrypt.compare(password,user.password)
                 .then(isMatch=>{
                     if(!isMatch) return res.status(400).json({'message':'Invalid credentials'})
@@ -98,33 +96,15 @@ export const getSingleUser = (req,res)=> {
         })
 }
 
-//middleware used in every authentication request
 export const auth = (req,res,next)=> {
-    //token using bearer authentication 
     const authHeader = req.headers['authorization']
     const token = authHeader && authHeader.split(' ')[1]
-    //check token
+
     if(!token) return res.status(401).json({message:' Authorization denied'})
 
-    //verify token
     jwt.verify(token,process.env.ACCESS_TOKEN_SECRET,(err,user)=>{
         if(err) return res.status(403).json({'message':'Access denied'})
         req.user=user
         next()
     });
 }
-
-// OR can be done like this
-// export const auth = (req,res,next)=> {
-//     //token send from frontend wiyh key x-auth-token
-//     const token= req.header('x-auth-token')
-//     //check token
-//     if(!token) return res.status(401).json({message:' Authorization denied'})
-
-//     //verify token
-//     jwt.verify(token,process.env.ACCESS_TOKEN_SECRET,(err,user)=>{
-//         if(err) return res.status(403).json({'message':'Access denied'})
-//         req.user = user
-//         next()
-//     });
-// }

@@ -21,7 +21,6 @@ export default function ItemList() {
             const list = await axios.get(apiUrl,{headers:authHeader()})
             setTodos(list.data)
         }catch(err){
-            console.log(err)
         }        
     }
     const getUser = async()=>{
@@ -29,7 +28,6 @@ export default function ItemList() {
         const user = await axios.get("http://localhost:5000/api/user",{headers:authHeader()})
         setUser(user.data)
         }catch(err){
-            console.log(err)
         }        
     }
     const deleteItem = async(id)=>{
@@ -38,17 +36,14 @@ export default function ItemList() {
             const newTodos = todos.filter((item) => item._id !== id)
             setTodos(newTodos);
         }catch(err){
-            console.log(err)
         }
     }
             const showList = async(id)=>{
         try{
             const todoItem = await axios.get(`${apiUrl}/${id}`, {headers:authHeader()})
             setItem(todoItem.data)
-            console.log(item)
             setModal(true)
         }catch(err){
-            console.log(err)
         }
     }
 
