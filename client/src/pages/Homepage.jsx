@@ -22,9 +22,9 @@ export default function Homepage() {
                     </div>
                 </Toolbar>
                 </AppBar>
-            <Container className={classes.container}>           
+            <Container maxWidth= {false}className={classes.container}>           
                 <Typography className={classes.heroText} variant="h3">
-                    Plan IT, Makes life easier!!
+                    Plan IT, Make life easier!!
                 </Typography>
             </Container>
         </>

@@ -5,6 +5,16 @@ const useStyles = makeStyles((theme)=>({
  icon:{
     marginRight:'1rem'
   },
+  utilityName:{
+    position:'absolute',
+    top:'1rem',
+    right:'5rem'
+  },
+  utilityLogout:{
+    position:'absolute',
+    top:'1.25rem',
+    right:'2rem'
+  },
   button:{
       marginRight:'1rem'
   },
@@ -13,10 +23,11 @@ const useStyles = makeStyles((theme)=>({
   },
   container:{
         minHeight:'95vh',
-         backgroundImage: `url(${Image})`,
+        width:'100%',
+         backgroundImage: `linear-gradient(rgba(169,169,169,0.7),rgba(169,169,169,0.7)),url(${Image})`,
          backgroundSize:'cover',
          backgroundRepeat:'no-repeat',
-         opacity:0.5
+
       
   },
 
