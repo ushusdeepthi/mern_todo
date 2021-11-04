@@ -25,11 +25,7 @@ export default function ItemForm() {
             e.target.heading.value= ''
             e.target.text.value= ''
             }
-            else{
-                console.log('Title and description mandatory')
-            }
         }catch(error){
-            console.log(error.message)
         }
 
     }

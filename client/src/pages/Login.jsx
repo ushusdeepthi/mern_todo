@@ -26,9 +26,6 @@ export default function Login() {
                     localStorage.setItem("user", JSON.stringify(user.data))
                     history.push('/todo')
                 }
-                else{
-                    console.log('no user')
-                }
             }
         }catch(err){
 
