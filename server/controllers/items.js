@@ -3,8 +3,6 @@ import Todo from '../models/todoList.js'
 export const getTodoList = async (req,res)=>{
     try{
         const todoList = await Todo.find({user: req.user.id});
-        console.log(todoList);
-        console.log(`user: ${req.user.id}`);
         res.status(200).json(todoList);
     }
     catch(error){
