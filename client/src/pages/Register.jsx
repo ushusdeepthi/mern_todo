@@ -10,7 +10,7 @@ import axios from "axios"
 export default function Register() {
     const classes = useStyles()
     const history = useHistory()
-    const apiUrl = "http://localhost:5000/api/register";
+    const apiUrl = "https://todo-app-mern-server.herokuapp.com/api/register";
     const [name,setName] =useState('')
     const [email,setEmail] =useState('')
     const [password,setPassword] =useState('')

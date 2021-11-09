@@ -8,7 +8,7 @@ import { UserContext } from '../contexts/UserContext'
 export default function ItemEditModal() {
     const classes = useStyles()
     const [edit, setEdit] = useState(false)        
-    const apiUrl = "http://localhost:5000/api/items";
+    const apiUrl = "https://todo-app-mern-server.herokuapp.com/api/items";
     const {authHeader, setModal, item,setItem,todos,setTodos,modal} = useContext(UserContext)
 
     const handleSubmit= async(e)=>{

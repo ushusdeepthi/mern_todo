@@ -8,7 +8,7 @@ import ItemEditModal from './ItemEditModal';
 
 export default function ItemList() {
     const classes = useStyles()
-    const apiUrl = "http://localhost:5000/api/items";  
+    const apiUrl = "https://todo-app-mern-server.herokuapp.com/api/items";  
     const {authHeader,modal, setModal, item, setItem,todos,setTodos,user,setUser} = useContext(UserContext)
 
     useEffect(()=>{
@@ -25,7 +25,7 @@ export default function ItemList() {
     }
     const getUser = async()=>{
         try{
-        const user = await axios.get("http://localhost:5000/api/user",{headers:authHeader()})
+        const user = await axios.get("https://todo-app-mern-server.herokuapp.com/api/user",{headers:authHeader()})
         setUser(user.data)
         }catch(err){
         }        
